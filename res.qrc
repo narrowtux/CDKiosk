@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/gui/icons">
+        <file alias="burn.png">gui/burn.png</file>
+        <file alias="add.png">gui/list-add.png</file>
+        <file alias="remove.png">gui/list-remove.png</file>
+    </qresource>
+</RCC>
