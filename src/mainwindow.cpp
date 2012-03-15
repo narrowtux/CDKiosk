@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     showHomePage();
+    m_jobManager = 0;
     
     m_speechManager.load();
     m_speechManager.addFilter(new DateFilter(ui->listMonths));
@@ -95,7 +96,18 @@ SpeechManager * MainWindow::speechManager()
 
 void MainWindow::setJobManager(JobManager *jobManager)
 {
+    if(m_jobManager != 0) {
+	m_jobManager->disconnect(this, SLOT(onDiscProgress(Job*,int,int,int)));
+	m_jobManager->disconnect(this, SLOT(onJobDiscFinished(Job*,int,int)));
+	m_jobManager->disconnect(this, SLOT(onMessage(QString)));
+	m_jobManager->disconnect(this, SLOT(onJobFinished(Job*)));
+    }
     m_jobManager = jobManager;
+    ui->listjobs->setModel(m_jobManager);
+    connect(m_jobManager, SIGNAL(jobDiscProgress(Job*,int,int,int)), this, SLOT(onDiscProgress(Job*,int,int,int)));
+    connect(m_jobManager, SIGNAL(jobDiscFinished(Job*,int,int)), this, SLOT(onJobDiscFinished(Job*,int,int)));
+    connect(m_jobManager, SIGNAL(jobFinished(Job*)), this, SLOT(onJobFinished(Job*)));
+    connect(m_jobManager, SIGNAL(message(QString)), this, SLOT(onMessage(QString)));
 }
 
 void MainWindow::updateChooseLists()
@@ -202,7 +214,7 @@ void MainWindow::on_pushProceedToBurn_clicked()
 	    job->setFiles(files);
 	    m_jobManager->addJob(job);
 	}
-    } else if (m_currentDiscType = Job::FILES) {
+    } else {
 	//TODO: Check if all the files would match on one disk!
 	Job *job = new Job();
 	job->setDiscType(m_currentDiscType);
@@ -213,11 +225,35 @@ void MainWindow::on_pushProceedToBurn_clicked()
 	job->setFiles(files);
 	m_jobManager->addJob(job);
     }
+    
     if(!m_jobManager->isRunning()) {
 	if(!m_jobManager->startBurning()) {
 	    QMessageBox::warning(this, tr("Error occured"), tr("Could not begin burning disks"));
 	}
     }
-    cleanGui();
     cleanJob();
+    updateCart();
+}
+
+void MainWindow::onDiscProgress(Job *job, int discsDone, int discsTotal, int progress)
+{
+    ui->progressBar->setValue(progress);
+    ui->labelJobProgress->setText(tr("%0% Progress, %1 of %2 discs done.").arg(progress).arg(discsDone).arg(discsTotal));
+}
+
+void MainWindow::onJobDiscFinished(Job *job, int discsDone, int discsTotal)
+{
+    ui->progressBar->setValue(100);
+    ui->labelJobProgress->setText(tr("%0 of %1 discs done.").arg(discsDone).arg(discsTotal));
+}
+
+void MainWindow::onMessage(QString message)
+{
+    ui->labelJobProgress->setText(message);
+}
+
+void MainWindow::onJobFinished(Job *job)
+{
+    ui->progressBar->setValue(100);
+    ui->labelJobProgress->setText(tr("Job done."));
 }

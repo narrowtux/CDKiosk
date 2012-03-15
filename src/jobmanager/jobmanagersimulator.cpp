@@ -8,11 +8,6 @@ JobManagerSimulator::JobManagerSimulator(QDir workingDirectory, QObject *parent)
     connect(m_timer, SIGNAL(timeout()), this, SLOT(onTick()));
 }
 
-bool JobManagerSimulator::addJob(Job *job)
-{
-    m_jobQueue.append(job);
-}
-
 bool JobManagerSimulator::abortJob(Job *job)
 {
     if(isRunning() && job == m_jobQueue.first()) {
@@ -26,40 +21,45 @@ bool JobManagerSimulator::abortJob(Job *job)
 bool JobManagerSimulator::startBurning()
 {
     m_timer->start();
+    return true;
 }
 
 void JobManagerSimulator::onTick()
 {
-    m_jobProgress ++;
-    Job *job = m_jobQueue.first();
-    if(m_jobProgress == 100) {
-	m_jobProgress = 0;
-	int done = job->discsDone();
-	int total = job->discsTotal();
-	done ++;
-	job->setDiscsDone(done);
-	if(done == total) {
-	    emit(jobFinished(job));
-	    m_jobQueue.pop_front();
-	} else {
-	    emit(jobDiscFinished(job, done, total));
+    if(hasJobs()) {
+	Job *job = m_jobQueue.first();
+	int progress = job->progress() + 1;
+	QModelIndex statusIndex = index(0, 4), 
+		    progressIndex = index(0, 3),
+		    discsDoneIndex = index(0, 1);
+	if(progress == 1) {
+	    job->setStatus(tr("Recording Disc %0").arg(job->discsDone() + 1));
+	    emit(dataChanged(statusIndex, statusIndex));
 	}
+	if(progress == 70) {
+	    job->setStatus(tr("Printing Disc %0").arg(job->discsDone() + 1));
+	    emit(dataChanged(statusIndex, statusIndex));
+	}
+	emit(dataChanged(progressIndex, progressIndex));
+	emit(jobDiscProgress(job, job->discsDone(), job->discsTotal(), progress));
+	if(progress == 100) {
+	    progress = 0;
+	    int done = job->discsDone();
+	    int total = job->discsTotal();
+	    done ++;
+	    job->setDiscsDone(done);
+	    emit(dataChanged(discsDoneIndex, discsDoneIndex));
+	    emit(jobDiscFinished(job, done, total));
+	    if(done == total) {
+		job->setStatus(tr("Done"));
+		removeJob(job);
+		emit(jobFinished(job));
+	    }
+	}
+	job->setProgress(progress);
     } else {
-	emit(jobDiscProgress(job, job->discsDone(), job->discsTotal(), m_jobProgress));
+	m_timer->stop();
+	m_running = false;
     }
 }
 
-bool JobManagerSimulator::hasJobs()
-{
-    return count() > 0;
-}
-
-int JobManagerSimulator::count()
-{
-    return m_jobQueue.count();
-}
-
-bool JobManagerSimulator::hasJob(Job *job)
-{
-    return m_jobQueue.contains(job);
-}

@@ -48,6 +48,12 @@ private slots:
     
     void on_pushProceedToBurn_clicked();
     
+    void onDiscProgress(Job *job, int discsDone, int discsTotal, int progress);
+    
+    void onJobDiscFinished(Job *job, int discsDone, int discsTotal);
+    void onMessage(QString message);
+    void onJobFinished(Job *job);
+    
 private:
     Ui::MainWindow *ui;
 

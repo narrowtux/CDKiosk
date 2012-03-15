@@ -6,6 +6,9 @@ Job::Job(QObject *parent) :
     m_discsDone = 0;
     m_discsTotal = 1;
     m_discType = AUDIO;
+    m_name = tr("untitled job");
+    m_progress = 0;
+    m_status = tr("Not in queue");
 }
 
 int Job::discsDone()
@@ -46,4 +49,34 @@ void Job::setFiles(FileList files)
 FileList Job::files()
 {
     return m_files;
+}
+
+QString Job::name()
+{
+    return m_name;
+}
+
+void Job::setName(QString name)
+{
+    m_name = name;
+}
+
+QString Job::status()
+{
+    return m_status;
+}
+
+void Job::setStatus(QString status)
+{
+    m_status = status;
+}
+
+int Job::progress()
+{
+    return m_progress;
+}
+
+void Job::setProgress(int progress)
+{
+    m_progress = progress;
 }

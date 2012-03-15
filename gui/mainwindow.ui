@@ -187,7 +187,7 @@
        <number>0</number>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -509,10 +509,17 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QProgressBar" name="progressBar">
+            <property name="value">
+             <number>0</number>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item>
-         <widget class="QListView" name="listjobs"/>
+         <widget class="QTableView" name="listjobs"/>
         </item>
        </layout>
       </widget>

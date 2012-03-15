@@ -25,6 +25,12 @@ public:
     void setDiscType(DiscType type);
     void setFiles(FileList files);
     FileList files();
+    QString name();
+    void setName(QString name);
+    QString status();
+    void setStatus(QString status);
+    int progress();
+    void setProgress(int progress);
 signals:
     
 public slots:
@@ -33,6 +39,9 @@ private:
     DiscType m_discType;
     FileList m_files;
     Cover *m_cover;
+    QString m_name;
+    QString m_status;
+    int m_progress;
 };
 
 #endif // JOB_H
