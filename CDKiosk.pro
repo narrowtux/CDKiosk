@@ -9,43 +9,49 @@ QT       += core gui
 TARGET = CDKiosk
 TEMPLATE = app
 
+QMAKE_LFLAGS += -F/Library/Frameworks/ -m32
+QMAKE_CFLAGS += -m32
+QMAKE_CXXFLAGS += -m32
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    speechmodel.cpp \
-    speech.cpp \
-    speechmanager.cpp \
-    filter.cpp \
-    datefilter.cpp \
-    authorfilter.cpp \
-    groupfilter.cpp \
-    abstracttask.cpp
+LIBS += -framework as_storage
+LIBS += -framework JobManager
+LIBS += -framework JobProcessor
+LIBS += -framework PTRobot
 
-HEADERS  += mainwindow.h \
-    speechmodel.h \
-    speech.h \
-    speechmanager.h \
-    filter.h \
-    datefilter.h \
-    authorfilter.h \
-    groupfilter.h \
-    abstracttask.h
 
-FORMS    += mainwindow.ui
+SOURCES += src/main.cpp\
+        src/mainwindow.cpp \
+    src/speechmodel.cpp \
+    src/speech.cpp \
+    src/speechmanager.cpp \
+    src/filter.cpp \
+    src/datefilter.cpp \
+    src/authorfilter.cpp \
+    src/groupfilter.cpp \
+    src/abstracttask.cpp \
+    src/jobmanager.cpp \
+    src/jobmanager/job.cpp \
+    src/jobmanager/jobmanagermac.cpp \
+    src/jobmanager/jobmanagersimulator.cpp
+
+HEADERS  += src/mainwindow.h \
+    src/speechmodel.h \
+    src/speech.h \
+    src/speechmanager.h \
+    src/filter.h \
+    src/datefilter.h \
+    src/authorfilter.h \
+    src/groupfilter.h \
+    src/abstracttask.h \
+    src/jobmanager.h \
+    src/jobmanager/job.h \
+    src/jobmanager/jobmanagermac.h \
+    src/jobmanager/jobmanagersimulator.h
+
+FORMS    += gui/mainwindow.ui
 
 RESOURCES += \
-    res.qrc
+    res/res.qrc
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+OTHER_FILES += \
+    src/jobmanager/README.txt
