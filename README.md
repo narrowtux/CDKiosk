@@ -29,3 +29,8 @@ Please remember to sign your commits like that:
 Git will do this automatically if you add the -s parameter to the git commit call:
 
 	git commit -s 
+
+Copyright
+---------
+CDKiosk is released under the GNU Lesser General Public License Version 3 (LGPLv3).
+For a copy of the license, see LICENSE.txt
