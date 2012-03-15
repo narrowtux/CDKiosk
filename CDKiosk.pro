@@ -54,4 +54,4 @@ RESOURCES += \
     res/res.qrc
 
 OTHER_FILES += \
-    src/jobmanager/README.txt
+    README.md
