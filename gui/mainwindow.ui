@@ -32,7 +32,7 @@
 	margin-right: 3px;
 }
 
-.QPushButton:pressed {
+.QPushButton:pressed, .QPushButton:checked {
 	background: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(255, 6, 0, 255), stop:0.600985 rgba(176, 0, 0, 255));
 	color:white;
 }</string>
@@ -70,18 +70,8 @@
       <item>
        <widget class="QPushButton" name="push1Home">
         <property name="styleSheet">
-         <string notr="true">.QPushButton {
-	border: 1px solid rgb(202, 202, 202);
-	background: qlineargradient(spread:pad, x1:0, y1:0.136, x2:0, y2:0.847, stop:0 rgba(221, 221, 221, 255), stop:1 rgb(237, 237, 237));
-	padding: 5px;
-	margin: 5px;
-	font-size: 20pt;
-}
-
-.QPushButton:pressed, .QPushButton:checked {
-	color:white;
-	background: qlineargradient(spread:pad, x1:0, y1:0.136, x2:0, y2:0.847, stop:0 rgb(193, 193, 193), stop:1 rgb(137, 137, 137));
-}</string>
+         <string notr="true">border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;</string>
         </property>
         <property name="text">
          <string>Home</string>
@@ -100,18 +90,7 @@
       <item>
        <widget class="QPushButton" name="push2Choose">
         <property name="styleSheet">
-         <string notr="true">.QPushButton {
-	border: 1px solid rgb(202, 202, 202);
-	background: qlineargradient(spread:pad, x1:0, y1:0.136, x2:0, y2:0.847, stop:0 rgba(221, 221, 221, 255), stop:1 rgb(237, 237, 237));
-	padding: 5px;
-	margin: 5px;
-	font-size: 20pt;
-}
-
-.QPushButton:pressed, .QPushButton:checked {
-	color:white;
-	background: qlineargradient(spread:pad, x1:0, y1:0.136, x2:0, y2:0.847, stop:0 rgb(193, 193, 193), stop:1 rgb(137, 137, 137));
-}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Choose</string>
@@ -130,18 +109,7 @@
       <item>
        <widget class="QPushButton" name="push3Cart">
         <property name="styleSheet">
-         <string notr="true">.QPushButton {
-	border: 1px solid rgb(202, 202, 202);
-	background: qlineargradient(spread:pad, x1:0, y1:0.136, x2:0, y2:0.847, stop:0 rgba(221, 221, 221, 255), stop:1 rgb(237, 237, 237));
-	padding: 5px;
-	margin: 5px;
-	font-size: 20pt;
-}
-
-.QPushButton:pressed, .QPushButton:checked {
-	color:white;
-	background: qlineargradient(spread:pad, x1:0, y1:0.136, x2:0, y2:0.847, stop:0 rgb(193, 193, 193), stop:1 rgb(137, 137, 137));
-}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Cart</string>
@@ -157,18 +125,8 @@
       <item>
        <widget class="QPushButton" name="push4Burn">
         <property name="styleSheet">
-         <string notr="true">.QPushButton {
-	border: 1px solid rgb(202, 202, 202);
-	background: qlineargradient(spread:pad, x1:0, y1:0.136, x2:0, y2:0.847, stop:0 rgba(221, 221, 221, 255), stop:1 rgb(237, 237, 237));
-	padding: 5px;
-	margin: 5px;
-	font-size: 20pt;
-}
-
-.QPushButton:pressed, .QPushButton:checked {
-	color:white;
-	background: qlineargradient(spread:pad, x1:0, y1:0.136, x2:0, y2:0.847, stop:0 rgb(193, 193, 193), stop:1 rgb(137, 137, 137));
-}</string>
+         <string notr="true">border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;</string>
         </property>
         <property name="text">
          <string>Burn</string>
@@ -504,7 +462,7 @@ border-radius: 10px;</string>
              <string>Burn</string>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="../res/res.qrc">
               <normaloff>:/gui/icons/burn.png</normaloff>:/gui/icons/burn.png</iconset>
             </property>
            </widget>
@@ -557,7 +515,9 @@ border-radius: 10px;</string>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../res/res.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>pushProceedToBurn</sender>
@@ -566,8 +526,8 @@ border-radius: 10px;</string>
    <slot>showBurnPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>99</y>
+     <x>1208</x>
+     <y>779</y>
     </hint>
     <hint type="destinationlabel">
      <x>889</x>
@@ -582,8 +542,8 @@ border-radius: 10px;</string>
    <slot>showChoosePage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>32</x>
-     <y>99</y>
+     <x>44</x>
+     <y>779</y>
     </hint>
     <hint type="destinationlabel">
      <x>657</x>
@@ -598,8 +558,8 @@ border-radius: 10px;</string>
    <slot>showCartPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>99</y>
+     <x>1177</x>
+     <y>779</y>
     </hint>
     <hint type="destinationlabel">
      <x>803</x>
@@ -614,8 +574,8 @@ border-radius: 10px;</string>
    <slot>updateSpeechList()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>28</x>
-     <y>79</y>
+     <x>42</x>
+     <y>175</y>
     </hint>
     <hint type="destinationlabel">
      <x>65</x>
@@ -630,8 +590,8 @@ border-radius: 10px;</string>
    <slot>updateSpeechList()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>55</x>
-     <y>79</y>
+     <x>275</x>
+     <y>175</y>
     </hint>
     <hint type="destinationlabel">
      <x>182</x>
@@ -646,8 +606,8 @@ border-radius: 10px;</string>
    <slot>updateSpeechList()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>82</x>
-     <y>79</y>
+     <x>507</x>
+     <y>175</y>
     </hint>
     <hint type="destinationlabel">
      <x>354</x>
