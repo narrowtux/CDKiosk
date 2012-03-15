@@ -215,7 +215,6 @@ void MainWindow::on_pushProceedToBurn_clicked()
 	    m_jobManager->addJob(job);
 	}
     } else {
-	//TODO: Check if all the files would match on one disk!
 	Job *job = new Job();
 	job->setDiscType(m_currentDiscType);
 	FileList files;

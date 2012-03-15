@@ -57,3 +57,6 @@ RESOURCES += \
 
 OTHER_FILES += \
     README.md
+
+TRANSLATIONS += \
+	cdkiosk-de_DE.ts

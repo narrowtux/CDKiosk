@@ -6,12 +6,22 @@
 #include <QDir>
 #include <QDebug>
 #include "jobmanager/jobmanagersimulator.h"
+#include <QTranslator>
 
 int main(int argc, char *argv[])
 {
     qDebug()<<""; //Make sure that a newline is printed before printing other stuff...
     
     QApplication a(argc, argv);
+    
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(),
+		      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    a.installTranslator(&qtTranslator);
+    
+    QTranslator myappTranslator;
+    myappTranslator.load("cdkiosk-" + QLocale::system().name());
+    a.installTranslator(&myappTranslator);
     
     QPixmap pixmap(":/gui/icons/splash.png");
     QSplashScreen *splash = new QSplashScreen(pixmap);
@@ -39,6 +49,6 @@ int main(int argc, char *argv[])
     splash->finish(&w);
     w.show();
     splash->deleteLater();
-
+    
     return a.exec();
 }
