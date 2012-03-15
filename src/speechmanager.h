@@ -4,6 +4,7 @@
 #include <QObject>
 #include "speech.h"
 #include "filter.h"
+#include <QMap>
 
 class SpeechManager : public QObject
 {
@@ -15,13 +16,14 @@ public:
     QList<QString> getGroups();
     QList<Speech*> speeches();
     void addSpeech(Speech *speech);
+    Speech *speech(int databaseId);
 
     QList<Speech*> getFilteredSpeeches();
     void addFilter(Filter *filter);
     void load();
     void save();
 private:
-    QList<Speech*> m_speeches;
+    QMap<int, Speech *> m_speeches;
     QList<QString> m_groupsCache;
     bool groupsDirty;
     QList<QString> m_authorsCache;

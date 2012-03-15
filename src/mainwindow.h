@@ -5,6 +5,7 @@
 #include "speechmanager.h"
 #include <QtCore>
 #include "jobmanager.h"
+#include "jobmanager/job.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,6 +24,7 @@ public:
     
     void setJobManager(JobManager *jobManager);
 public slots:
+    void showHomePage();
     void showChoosePage();
     void showCartPage();
     void showBurnPage();
@@ -32,6 +34,14 @@ public slots:
 
 private slots:
 
+    void on_pushCD_clicked();
+    
+    void on_pushMP3_clicked();
+    
+    void cleanJob();
+    
+    void on_pushAddToCart_clicked();
+    
 private:
     Ui::MainWindow *ui;
 
@@ -40,6 +50,10 @@ private:
     JobManager *m_jobManager;
     
     QDir m_workDirectory;
+    
+    Job::DiscType m_currentDiscType;
+    
+    QList<Speech *> m_speechesForJob;
 };
 
 #endif // MAINWINDOW_H

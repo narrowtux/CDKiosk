@@ -12,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    showChoosePage();
+    m_currentJob = 0;
+    showHomePage();
     
     m_speechManager.load();
     m_speechManager.addFilter(new DateFilter(ui->listMonths));
@@ -44,6 +45,11 @@ MainWindow::MainWindow(QWidget *parent) :
     updateSpeechList();
     
     m_workDirectory = QDir(QDesktopServices::storageLocation(QDesktopServices::DataLocation));
+    
+    connect(ui->push1Home, SIGNAL(clicked()), this, SLOT(showHomePage()));
+    connect(ui->push2Choose, SIGNAL(clicked()), this, SLOT(showChoosePage()));
+    connect(ui->push3Cart, SIGNAL(clicked()), this, SLOT(showCartPage()));
+    connect(ui->push4Burn, SIGNAL(clicked()), this, SLOT(showBurnPage()));
 }
 
 MainWindow::~MainWindow()
@@ -51,19 +57,30 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::showChoosePage()
+
+void MainWindow::showHomePage()
 {
     ui->centralStack->setCurrentIndex(0);
+    ui->push1Home->setChecked(true);
+}
+
+
+void MainWindow::showChoosePage()
+{
+    ui->centralStack->setCurrentIndex(1);
+    ui->push2Choose->setChecked(true);
 }
 
 void MainWindow::showCartPage()
 {
-    ui->centralStack->setCurrentIndex(1);
+    ui->centralStack->setCurrentIndex(2);
+    ui->push3Cart->setChecked(true);
 }
 
 void MainWindow::showBurnPage()
 {
-    ui->centralStack->setCurrentIndex(2);
+    ui->centralStack->setCurrentIndex(3);
+    ui->push4Burn->setChecked(true);
 }
 
 void MainWindow::cleanGui()
@@ -113,5 +130,38 @@ void MainWindow::updateSpeechList()
 	QListWidgetItem *item = new QListWidgetItem(speech->compiledName(), ui->listSpeeches);
 	item->setData(ROLE_DATABASE_ID, speech->databaseId());
 	ui->listSpeeches->addItem(item);
+    }
+}
+
+void MainWindow::on_pushCD_clicked()
+{
+    cleanJob();
+    showChoosePage();
+    m_currentDiscType = Job::AUDIO;
+}
+
+void MainWindow::on_pushMP3_clicked()
+{
+    cleanJob();
+    showChoosePage();
+    m_currentDiscType = Job::FILES;
+}
+
+void MainWindow::cleanJob()
+{
+    m_currentDiscType = Job::AUDIO;
+    m_speechesForJob.clear();
+}
+
+void MainWindow::on_pushAddToCart_clicked()
+{
+    QList<QListWidgetItem *> items = ui->listSpeeches->selectedItems();
+    foreach(QListWidgetItem *item, items) {
+	int dbId = item->data(ROLE_DATABASE_ID).toInt();
+	Speech *speech = m_speechManager.speech(dbId);
+	if(speech != 0) {
+	    m_speechesForJob.append(speech);
+	    qDebug()<<"added speech "<<speech->author();
+	}
     }
 }

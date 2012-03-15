@@ -10,7 +10,6 @@ class Speech : public QObject
     Q_PROPERTY(QString Name READ name WRITE setName)
     Q_PROPERTY(QString Author READ author WRITE setAuthor)
     Q_PROPERTY(QString FilenameMP3 READ filenameMP3 WRITE setFilenameMP3)
-    Q_PROPERTY(QString FilenameWave READ filenameWave WRITE setFilenameWave)
     Q_PROPERTY(QDate Date READ date WRITE setDate)
     Q_PROPERTY(int DatabaseId READ databaseId WRITE setDatabaseId)
     Q_PROPERTY(QString Group READ group WRITE setGroup)
@@ -34,12 +33,7 @@ public:
     {
 	return m_FilenameMP3;
     }
-
-    QString filenameWave() const
-    {
-	return m_FilenameWave;
-    }
-
+    
     QDate date() const
     {
 	return m_Date;
@@ -71,11 +65,6 @@ public slots:
 	m_FilenameMP3 = arg;
     }
 
-    void setFilenameWave(QString arg)
-    {
-	m_FilenameWave = arg;
-    }
-
     void setDate(QDate arg)
     {
 	m_Date = arg;
@@ -98,13 +87,13 @@ private:
 
     QString m_FilenameMP3;
 
-    QString m_FilenameWave;
-
     QDate m_Date;
 
     int m_DatabaseId;
 
     QString m_Group;
+    
+    static int nextDatabaseId;
 };
 
 #endif // SPEECH_H

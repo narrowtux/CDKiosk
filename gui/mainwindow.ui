@@ -19,6 +19,20 @@
 }
 .QLabel {
 	color: white;
+}
+
+.QPushButton {
+	font-size:30pt; 
+	background: white;
+	color: black;
+	border: 1px solid lightgray;
+	padding: 10px;
+	margin: 3px;
+}
+
+.QPushButton:pressed {
+	background: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(255, 6, 0, 255), stop:0.600985 rgba(176, 0, 0, 255));
+	color:white;
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -173,7 +187,7 @@
        <number>0</number>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -192,6 +206,9 @@
         </item>
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_9" stretch="1,0,0,0,5">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <item>
            <spacer name="verticalSpacer_2">
             <property name="orientation">
@@ -217,30 +234,24 @@
           </item>
           <item>
            <widget class="QPushButton" name="pushCD">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>54</height>
-             </size>
-            </property>
             <property name="styleSheet">
-             <string notr="true">font-size:30pt; </string>
+             <string notr="true">.QPushButton {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}</string>
             </property>
             <property name="text">
-             <string>CD</string>
+             <string>Audio CD</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushMP3">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>54</height>
-             </size>
-            </property>
             <property name="styleSheet">
-             <string notr="true">font-size:30pt; </string>
+             <string notr="true">.QPushButton {
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}</string>
             </property>
             <property name="text">
              <string>MP3 CD</string>
@@ -347,6 +358,9 @@
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <item>
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
@@ -408,25 +422,13 @@
           <property name="movement">
            <enum>QListView::Free</enum>
           </property>
-          <item>
-           <property name="text">
-            <string>1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>2</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>3</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QPushButton" name="pushBackToChoose">
             <property name="styleSheet">

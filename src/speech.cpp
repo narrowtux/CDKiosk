@@ -1,8 +1,11 @@
 #include "speech.h"
 
+int Speech::nextDatabaseId = 0;
+
 Speech::Speech() :
     QObject(0)
 {
+    m_DatabaseId = nextDatabaseId++;
 }
 
 QString Speech::compiledName()

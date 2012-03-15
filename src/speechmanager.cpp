@@ -13,7 +13,7 @@ QList<QString> SpeechManager::getDates()
 	return m_datesCache;
     }
     QList<QString> ret;
-    foreach(Speech* speech, m_speeches) {
+    foreach(Speech* speech, m_speeches.values()) {
 	QString date = DateFilter::getDateString(speech->date());
 	if(!ret.contains(date)) {
 	    ret.append(date);
@@ -30,7 +30,7 @@ QList<QString> SpeechManager::getAuthors()
 	return m_authorsCache;
     }
     QList<QString> ret;
-    foreach(Speech* speech, m_speeches) {
+    foreach(Speech* speech, m_speeches.values()) {
 	QString author = speech->author();
 	if(author == 0 || author == "") {
 	    author = tr("None");
@@ -50,7 +50,7 @@ QList<QString> SpeechManager::getGroups()
 	return m_groupsCache;
     }
     QList<QString> ret;
-    foreach(Speech* speech, m_speeches) {
+    foreach(Speech* speech, m_speeches.values()) {
 	QString group = speech->group();
 	if(group == 0 || group == "") {
 	    continue;
@@ -66,7 +66,7 @@ QList<QString> SpeechManager::getGroups()
 
 QList<Speech *> SpeechManager::speeches()
 {
-    return m_speeches;
+    return m_speeches.values();
 }
 
 void SpeechManager::load()
@@ -92,7 +92,7 @@ void SpeechManager::addFilter(Filter *filter)
 QList<Speech *> SpeechManager::getFilteredSpeeches()
 {
     QList<Speech *> ret;
-    foreach(Speech * speech, m_speeches) {
+    foreach(Speech * speech, m_speeches.values()) {
 	bool matches = true;
 	foreach(Filter *filter, m_filters) {
 	    if(!filter->matches(speech)) {
@@ -109,6 +109,11 @@ QList<Speech *> SpeechManager::getFilteredSpeeches()
 
 void SpeechManager::addSpeech(Speech *speech)
 {
-    m_speeches << speech;
+    m_speeches.insert(speech->databaseId(), speech);
     dirtyAll();
+}
+
+Speech *SpeechManager::speech(int databaseId)
+{
+    return m_speeches.value(databaseId, 0);
 }
