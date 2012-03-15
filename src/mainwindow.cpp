@@ -4,6 +4,7 @@
 #include "authorfilter.h"
 #include "groupfilter.h"
 #include <QDesktopServices>
+#include <QMessageBox>
 
 const int MainWindow::ROLE_DATABASE_ID = Qt::UserRole + 1;
 
@@ -12,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    m_currentJob = 0;
     showHomePage();
     
     m_speechManager.load();
@@ -164,4 +164,60 @@ void MainWindow::on_pushAddToCart_clicked()
 	    qDebug()<<"added speech "<<speech->author();
 	}
     }
+    updateCart();
+}
+
+void MainWindow::updateCart()
+{
+    ui->listCart->clear();
+    foreach(Speech *speech, m_speechesForJob) {
+	QListWidgetItem *item = new QListWidgetItem(speech->compiledName());
+	item->setData(ROLE_DATABASE_ID, speech->databaseId());
+	ui->listCart->addItem(item);
+    }
+}
+
+void MainWindow::on_pushRemoveFromCart_clicked()
+{
+    QList<QListWidgetItem *> items = ui->listCart->selectedItems();
+    foreach(QListWidgetItem *item, items) {
+	int dbId = item->data(ROLE_DATABASE_ID).toInt();
+	Speech *speech = m_speechManager.speech(dbId);
+	if(speech != 0) {
+	    m_speechesForJob.removeAll(speech);
+	    qDebug()<<"removed speech "<<speech->author();
+	}
+    }
+    updateCart();
+}
+
+void MainWindow::on_pushProceedToBurn_clicked()
+{
+    if(m_currentDiscType == Job::AUDIO) {
+	foreach(Speech *speech, m_speechesForJob) {
+	    Job *job = new Job();
+	    job->setDiscType(m_currentDiscType);
+	    FileList files;
+	    files << speech->filenameMP3();
+	    job->setFiles(files);
+	    m_jobManager->addJob(job);
+	}
+    } else if (m_currentDiscType = Job::FILES) {
+	//TODO: Check if all the files would match on one disk!
+	Job *job = new Job();
+	job->setDiscType(m_currentDiscType);
+	FileList files;
+	foreach(Speech *speech, m_speechesForJob) {
+	    files << speech->filenameMP3();
+	}
+	job->setFiles(files);
+	m_jobManager->addJob(job);
+    }
+    if(!m_jobManager->isRunning()) {
+	if(!m_jobManager->startBurning()) {
+	    QMessageBox::warning(this, tr("Error occured"), tr("Could not begin burning disks"));
+	}
+    }
+    cleanGui();
+    cleanJob();
 }

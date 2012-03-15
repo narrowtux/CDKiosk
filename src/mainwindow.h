@@ -42,6 +42,12 @@ private slots:
     
     void on_pushAddToCart_clicked();
     
+    void updateCart();
+    
+    void on_pushRemoveFromCart_clicked();
+    
+    void on_pushProceedToBurn_clicked();
+    
 private:
     Ui::MainWindow *ui;
 
