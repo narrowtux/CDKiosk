@@ -6,6 +6,12 @@ A Kiosk application which aims to work with the Primera Disc Publisher SE.
 
 However, this project is built in a way you can implement your own "Driver".
 
+Gallery
+-------
+Here are some screenshots of the application to give you a rough overview of the features:
+
+![Screenshot of the Home screen](http://i.imgur.com/vN4PD.png)
+
 Building
 --------
 To build the project, you need [Qt](http://www.qt-project.org). To simply build it, follow theese 2 easy steps:
