@@ -27,7 +27,9 @@
 	color: black;
 	border: 1px solid lightgray;
 	padding: 10px;
-	margin: 3px;
+	margin: 4px;
+	margin-bottom: 3px;
+	margin-right: 3px;
 }
 
 .QPushButton:pressed {
@@ -187,7 +189,7 @@
        <number>0</number>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -205,7 +207,7 @@
          </spacer>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_9" stretch="1,0,0,0,5">
+         <layout class="QVBoxLayout" name="verticalLayout_9" stretch="1,0,0,0,5,0">
           <property name="spacing">
            <number>0</number>
           </property>
@@ -270,6 +272,16 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushAdministration">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px</string>
+            </property>
+            <property name="text">
+             <string>Administration</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -376,6 +388,10 @@
           </item>
           <item>
            <widget class="QPushButton" name="pushAddToCart">
+            <property name="styleSheet">
+             <string notr="true">border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;</string>
+            </property>
             <property name="text">
              <string>Add</string>
             </property>
@@ -388,7 +404,9 @@
           <item>
            <widget class="QPushButton" name="pushProceedToReview">
             <property name="styleSheet">
-             <string notr="true">font-weight: 800;</string>
+             <string notr="true">font-weight: 800;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;</string>
             </property>
             <property name="text">
              <string>Proceed</string>
@@ -416,6 +434,9 @@
         </item>
         <item>
          <widget class="QListWidget" name="listCart">
+          <property name="styleSheet">
+           <string notr="true">font-size: 20pt;</string>
+          </property>
           <property name="dragDropMode">
            <enum>QAbstractItemView::InternalMove</enum>
           </property>
@@ -432,7 +453,9 @@
           <item>
            <widget class="QPushButton" name="pushBackToChoose">
             <property name="styleSheet">
-             <string notr="true">font-weight: 800;</string>
+             <string notr="true">font-weight: 800;
+border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;</string>
             </property>
             <property name="text">
              <string>Add more</string>
@@ -445,6 +468,10 @@
           </item>
           <item>
            <widget class="QPushButton" name="pushRemoveFromCart">
+            <property name="styleSheet">
+             <string notr="true">border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;</string>
+            </property>
             <property name="text">
              <string>Remove Selected</string>
             </property>
@@ -470,13 +497,14 @@
           <item>
            <widget class="QPushButton" name="pushProceedToBurn">
             <property name="styleSheet">
-             <string notr="true">font-weight: 800;</string>
+             <string notr="true">font-weight: 800;
+border-radius: 10px;</string>
             </property>
             <property name="text">
              <string>Burn</string>
             </property>
             <property name="icon">
-             <iconset resource="../res/res.qrc">
+             <iconset>
               <normaloff>:/gui/icons/burn.png</normaloff>:/gui/icons/burn.png</iconset>
             </property>
            </widget>
@@ -529,9 +557,7 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="../res/res.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>pushProceedToBurn</sender>

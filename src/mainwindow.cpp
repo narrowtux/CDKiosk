@@ -5,6 +5,8 @@
 #include "groupfilter.h"
 #include <QDesktopServices>
 #include <QMessageBox>
+#include "administrationwindow.h"
+#include <QInputDialog>
 
 const int MainWindow::ROLE_DATABASE_ID = Qt::UserRole + 1;
 
@@ -51,6 +53,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->push2Choose, SIGNAL(clicked()), this, SLOT(showChoosePage()));
     connect(ui->push3Cart, SIGNAL(clicked()), this, SLOT(showCartPage()));
     connect(ui->push4Burn, SIGNAL(clicked()), this, SLOT(showBurnPage()));
+    
+    ui->pushAdministration->setVisible(settings.value("showAdminButton", true).toBool());
 }
 
 MainWindow::~MainWindow()
@@ -255,4 +259,25 @@ void MainWindow::onJobFinished(Job *job)
 {
     ui->progressBar->setValue(100);
     ui->labelJobProgress->setText(tr("Job done."));
+}
+
+void MainWindow::on_pushAdministration_clicked()
+{
+    QString realPassword = settings.value("password", "").toString();
+    if(realPassword != "") {
+	bool ok;
+	QString password = QInputDialog::getText(this, tr("Password protection"), tr("Enter the admin password"), QLineEdit::Password, "", &ok);
+	if(ok && password != realPassword) {
+	    QMessageBox::warning(this, tr("Password wrong"), tr("The password you entered was wrong. Try again?"));
+	    return;
+	} else if (!ok) {
+	    return;
+	}
+    }
+    
+    AdministrationWindow *window = new AdministrationWindow(this);
+    window->setWindowRole("Preferences");
+    window->setWindowFlags(Qt::Window);
+    window->setWindowTitle(tr("Administration"));
+    window->show();
 }

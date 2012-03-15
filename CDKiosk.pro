@@ -33,7 +33,8 @@ SOURCES += src/main.cpp\
     src/jobmanager/job.cpp \
     src/jobmanager/jobmanagermac.cpp \
     src/jobmanager/jobmanagersimulator.cpp \
-    src/jobmanager/cover.cpp
+    src/jobmanager/cover.cpp \
+    src/administrationwindow.cpp
 
 HEADERS  += src/mainwindow.h \
     src/speechmodel.h \
@@ -48,9 +49,11 @@ HEADERS  += src/mainwindow.h \
     src/jobmanager/job.h \
     src/jobmanager/jobmanagermac.h \
     src/jobmanager/jobmanagersimulator.h \
-    src/jobmanager/cover.h
+    src/jobmanager/cover.h \
+    src/administrationwindow.h
 
-FORMS    += gui/mainwindow.ui
+FORMS    += gui/mainwindow.ui \
+    src/administrationwindow.ui
 
 RESOURCES += \
     res/res.qrc

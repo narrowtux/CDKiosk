@@ -6,6 +6,7 @@
 #include <QtCore>
 #include "jobmanager.h"
 #include "jobmanager/job.h"
+#include <QSettings>
 
 namespace Ui {
 class MainWindow;
@@ -54,6 +55,8 @@ private slots:
     void onMessage(QString message);
     void onJobFinished(Job *job);
     
+    void on_pushAdministration_clicked();
+    
 private:
     Ui::MainWindow *ui;
 
@@ -66,6 +69,8 @@ private:
     Job::DiscType m_currentDiscType;
     
     QList<Speech *> m_speechesForJob;
+    
+    QSettings settings;
 };
 
 #endif // MAINWINDOW_H
