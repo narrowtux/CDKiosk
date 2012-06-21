@@ -1,3 +1,5 @@
+#ifdef USE_MAC_JOBMANAGER
+
 #include "jobmanagermac.h"
 
 JobManagerMac::JobManagerMac(QDir workingDirectory, QObject *parent) : JobManager(workingDirectory, parent)
@@ -8,3 +10,5 @@ JobManagerMac::JobManagerMac(QDir workingDirectory, QObject *parent) : JobManage
     char *appVersion = const_cast<char*>(qApp->applicationVersion().toStdString().c_str());
     m_jobManagerId = JM_Initialize(workDir, appName, appVersion, false);
 }
+
+#endif

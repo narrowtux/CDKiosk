@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QtCore>
-#include "cover.h"
+#include <QPixmap>
 
 typedef QList<QString> FileList;
 
@@ -31,6 +31,8 @@ public:
     void setStatus(QString status);
     int progress();
     void setProgress(int progress);
+    QPixmap cover();
+    void setCover(QPixmap cover);
 signals:
     
 public slots:
@@ -38,10 +40,10 @@ private:
     int m_discsDone, m_discsTotal;
     DiscType m_discType;
     FileList m_files;
-    Cover *m_cover;
     QString m_name;
     QString m_status;
     int m_progress;
+    QPixmap m_cover;
 };
 
 #endif // JOB_H

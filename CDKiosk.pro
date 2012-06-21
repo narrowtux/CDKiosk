@@ -4,20 +4,19 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 TARGET = CDKiosk
 TEMPLATE = app
 
-QMAKE_LFLAGS += -F/Library/Frameworks/ -m32
-QMAKE_CFLAGS += -m32
-QMAKE_CXXFLAGS += -m32
+#QMAKE_LFLAGS += -F/Library/Frameworks/ -m32
+#QMAKE_CFLAGS += -m32
+#QMAKE_CXXFLAGS += -m32
 
-LIBS += -framework as_storage
-LIBS += -framework JobManager
-LIBS += -framework JobProcessor
-LIBS += -framework PTRobot
-
+#LIBS += -framework as_storage
+#LIBS += -framework JobManager
+#LIBS += -framework JobProcessor
+#LIBS += -framework PTRobot
 
 SOURCES += src/main.cpp\
         src/mainwindow.cpp \
@@ -33,8 +32,9 @@ SOURCES += src/main.cpp\
     src/jobmanager/job.cpp \
     src/jobmanager/jobmanagermac.cpp \
     src/jobmanager/jobmanagersimulator.cpp \
-    src/jobmanager/cover.cpp \
-    src/administrationwindow.cpp
+    src/administrationwindow.cpp \
+    speecheditdialog.cpp \
+    cddisplaywidget.cpp
 
 HEADERS  += src/mainwindow.h \
     src/speechmodel.h \
@@ -49,11 +49,13 @@ HEADERS  += src/mainwindow.h \
     src/jobmanager/job.h \
     src/jobmanager/jobmanagermac.h \
     src/jobmanager/jobmanagersimulator.h \
-    src/jobmanager/cover.h \
-    src/administrationwindow.h
+    src/administrationwindow.h \
+    speecheditdialog.h \
+    cddisplaywidget.h
 
 FORMS    += gui/mainwindow.ui \
-    src/administrationwindow.ui
+    src/administrationwindow.ui \
+    speecheditdialog.ui
 
 RESOURCES += \
     res/res.qrc

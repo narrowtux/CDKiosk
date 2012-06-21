@@ -2,7 +2,6 @@
 #define JOBMANAGER_H
 
 #include <QObject>
-#include <JobManager/PTJobManager.h>
 #include <QDir>
 #include <QDebug>
 #include "jobmanager/job.h";

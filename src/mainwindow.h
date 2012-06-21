@@ -7,6 +7,7 @@
 #include "jobmanager.h"
 #include "jobmanager/job.h"
 #include <QSettings>
+#include <QtSql>
 
 namespace Ui {
 class MainWindow;
@@ -24,14 +25,13 @@ public:
     SpeechManager * speechManager();
     
     void setJobManager(JobManager *jobManager);
+    JobManager *jobManager();
 public slots:
     void showHomePage();
     void showChoosePage();
     void showCartPage();
     void showBurnPage();
     void cleanGui();
-    void updateChooseLists();
-    void updateSpeechList();
 
 private slots:
 
@@ -71,6 +71,12 @@ private:
     QList<Speech *> m_speechesForJob;
     
     QSettings settings;
+    
+    QSqlDatabase m_database;
+    
+    QSqlRelationalTableModel *model;
+    
+    void setupDatabase();
 };
 
 #endif // MAINWINDOW_H

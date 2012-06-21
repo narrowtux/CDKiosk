@@ -80,3 +80,13 @@ void Job::setProgress(int progress)
 {
     m_progress = progress;
 }
+
+QPixmap Job::cover()
+{
+    return m_cover;
+}
+
+void Job::setCover(QPixmap cover)
+{
+    m_cover = cover;
+}

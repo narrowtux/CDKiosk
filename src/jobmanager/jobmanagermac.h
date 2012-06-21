@@ -1,5 +1,7 @@
 #ifndef JOBMANAGERMAC_H
 #define JOBMANAGERMAC_H
+
+#ifdef USE_MAC_JOBMANAGER
 #include "../jobmanager.h"
 #include <QtCore>
 
@@ -10,5 +12,7 @@ public:
 private:
     UInt32 m_jobManagerId;
 };
+
+#endif
 
 #endif // JOBMANAGERMAC_H
