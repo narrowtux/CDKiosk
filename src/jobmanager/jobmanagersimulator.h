@@ -1,8 +1,8 @@
 #ifndef JOBMANAGERSIMULATOR_H
 #define JOBMANAGERSIMULATOR_H
 #include <QtCore>
-#include "../jobmanager.h"
-#include "job.h"
+#include "src/jobmanager/jobmanager.h"
+#include "src/jobmanager/job.h"
 #include <QQueue>
 
 class JobManagerSimulator : public JobManager

@@ -1,11 +1,11 @@
 #include <QtGui/QApplication>
-#include "mainwindow.h"
+#include "src/gui/mainwindow.h"
 #include <QSplashScreen>
 #include <QDesktopServices>
 #include <QPixmap>
 #include <QDir>
 #include <QDebug>
-#include "jobmanager/jobmanagersimulator.h"
+#include "src/jobmanager/jobmanagersimulator.h"
 #include <QTranslator>
 
 int main(int argc, char *argv[])

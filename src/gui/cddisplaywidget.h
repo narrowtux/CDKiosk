@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QTimer>
-#include "src/jobmanager.h"
+#include "src/jobmanager/jobmanager.h"
 
 class CDDisplayWidget : public QWidget
 {

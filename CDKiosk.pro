@@ -18,44 +18,44 @@ TEMPLATE = app
 #LIBS += -framework JobProcessor
 #LIBS += -framework PTRobot
 
-SOURCES += src/main.cpp\
-        src/mainwindow.cpp \
-    src/speechmodel.cpp \
-    src/speech.cpp \
-    src/speechmanager.cpp \
-    src/filter.cpp \
-    src/datefilter.cpp \
-    src/authorfilter.cpp \
-    src/groupfilter.cpp \
-    src/abstracttask.cpp \
-    src/jobmanager.cpp \
-    src/jobmanager/job.cpp \
-    src/jobmanager/jobmanagermac.cpp \
-    src/jobmanager/jobmanagersimulator.cpp \
-    src/administrationwindow.cpp \
-    speecheditdialog.cpp \
-    cddisplaywidget.cpp
+SOURCES += src/filter/authorfilter.cpp \
+			src/filter/datefilter.cpp \
+			src/filter/filter.cpp \
+			src/filter/groupfilter.cpp \
+			src/gui/administrationwindow.cpp \
+			src/gui/mainwindow.cpp \
+			src/gui/speecheditdialog.cpp \
+			src/gui/cddisplaywidget.cpp \
+			src/jobmanager/abstracttask.cpp \
+			src/jobmanager/job.cpp \
+			src/jobmanager/jobmanager.cpp \
+			src/jobmanager/jobmanagermac.cpp \
+			src/jobmanager/jobmanagersimulator.cpp \
+			src/main.cpp \
+			src/speech/speech.cpp \
+			src/speech/speechmanager.cpp \
+			src/speech/speechmodel.cpp
 
-HEADERS  += src/mainwindow.h \
-    src/speechmodel.h \
-    src/speech.h \
-    src/speechmanager.h \
-    src/filter.h \
-    src/datefilter.h \
-    src/authorfilter.h \
-    src/groupfilter.h \
-    src/abstracttask.h \
-    src/jobmanager.h \
-    src/jobmanager/job.h \
-    src/jobmanager/jobmanagermac.h \
-    src/jobmanager/jobmanagersimulator.h \
-    src/administrationwindow.h \
-    speecheditdialog.h \
-    cddisplaywidget.h
+HEADERS  += src/filter/authorfilter.h \
+			src/filter/datefilter.h \
+			src/filter/filter.h \
+			src/filter/groupfilter.h \
+			src/gui/administrationwindow.h \
+			src/gui/mainwindow.h \
+			src/gui/speecheditdialog.h \
+			src/gui/cddisplaywidget.h \
+			src/jobmanager/abstracttask.h \
+			src/jobmanager/job.h \
+			src/jobmanager/jobmanager.h \
+			src/jobmanager/jobmanagermac.h \
+			src/jobmanager/jobmanagersimulator.h \
+			src/speech/speech.h \
+			src/speech/speechmanager.h \
+			src/speech/speechmodel.h
 
-FORMS    += gui/mainwindow.ui \
-    src/administrationwindow.ui \
-    speecheditdialog.ui
+FORMS    += src/gui/administrationwindow.ui \
+			src/gui/mainwindow.ui \
+			src/gui/speecheditdialog.ui 
 
 RESOURCES += \
     res/res.qrc

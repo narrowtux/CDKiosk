@@ -1,5 +1,5 @@
-#include "speechmanager.h"
-#include "datefilter.h"
+#include "src/speech/speechmanager.h"
+#include "src/filter/datefilter.h"
 
 SpeechManager::SpeechManager(QObject *parent) :
     QObject(parent)

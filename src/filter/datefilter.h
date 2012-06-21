@@ -1,7 +1,8 @@
 #ifndef DATEFILTER_H
 #define DATEFILTER_H
 
-#include "filter.h"
+#include "src/filter/filter.h"
+#include "src/speech/speech.h"
 #include <QListWidget>
 
 class DateFilter : public Filter

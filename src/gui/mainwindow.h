@@ -2,10 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "speechmanager.h"
+#include "src/speech/speechmanager.h"
 #include <QtCore>
-#include "jobmanager.h"
-#include "jobmanager/job.h"
+#include "src/jobmanager/jobmanager.h"
+#include "src/jobmanager/job.h"
 #include <QSettings>
 #include <QtSql>
 

@@ -2,8 +2,8 @@
 #define GROUPFILTER_H
 
 #include <QListWidget>
-#include "filter.h"
-#include "speech.h"
+#include "src/filter/filter.h"
+#include "src/speech/speech.h"
 
 class GroupFilter : public Filter
 {

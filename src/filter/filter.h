@@ -1,7 +1,7 @@
 #ifndef FILTER_H
 #define FILTER_H
 
-#include "speech.h"
+#include "src/speech/speech.h"
 
 class Filter
 {

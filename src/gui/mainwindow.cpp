@@ -1,8 +1,8 @@
-#include "mainwindow.h"
+#include "src/gui/mainwindow.h"
 #include "ui_mainwindow.h"
-#include "datefilter.h"
-#include "authorfilter.h"
-#include "groupfilter.h"
+#include "src/filter/datefilter.h"
+#include "src/filter/authorfilter.h"
+#include "src/filter/groupfilter.h"
 #include <QDesktopServices>
 #include <QMessageBox>
 #include "administrationwindow.h"

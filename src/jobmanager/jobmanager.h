@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QDir>
 #include <QDebug>
-#include "jobmanager/job.h";
+#include "src/jobmanager/job.h";
 #include <QAbstractListModel>
 
 class JobManager : public QAbstractTableModel

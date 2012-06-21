@@ -2,8 +2,8 @@
 #define SPEECHMANAGER_H
 
 #include <QObject>
-#include "speech.h"
-#include "filter.h"
+#include "src/speech/speech.h"
+#include "src/filter/filter.h"
 #include <QMap>
 
 class SpeechManager : public QObject

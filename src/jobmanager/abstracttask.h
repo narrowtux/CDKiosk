@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
-#include "speech.h"
+#include "src/speech/speech.h"
 
 class BurnTask : public QObject
 {

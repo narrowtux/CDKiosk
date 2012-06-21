@@ -2,8 +2,8 @@
 #define AUTHORFILTER_H
 
 #include <QListWidget>
-#include "speech.h"
-#include "filter.h"
+#include "src/filter/filter.h"
+#include "src/speech/speech.h"
 
 class AuthorFilter : public Filter
 {
