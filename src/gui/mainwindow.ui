@@ -502,7 +502,7 @@ border-radius: 10px;</string>
   <customwidget>
    <class>CDDisplayWidget</class>
    <extends>QWidget</extends>
-   <header>cddisplaywidget.h</header>
+   <header>src/gui/cddisplaywidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

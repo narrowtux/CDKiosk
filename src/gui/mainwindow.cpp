@@ -11,13 +11,13 @@
 
 const int MainWindow::ROLE_DATABASE_ID = Qt::UserRole + 1;
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QSqlDatabase &db, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     
-    setupDatabase();
+    this->m_database = db;
     
     showHomePage();
     
@@ -263,19 +263,4 @@ void MainWindow::on_pushAdministration_clicked()
     window->setWindowFlags(Qt::Window);
     window->setWindowTitle(tr("Administration"));
     window->show();
-}
-
-void MainWindow::setupDatabase()
-{
-    m_database = QSqlDatabase::addDatabase("QMYSQL");
-    
-    m_database.setHostName("localhost");
-    m_database.setConnectOptions("UNIX_SOCKET=/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock");
-    m_database.setUserName("root");
-    m_database.setPassword("");
-    m_database.setDatabaseName("cdkiosk");
-    
-    if(!m_database.open()) {
-	qDebug()<<m_database.lastError();
-    }
 }

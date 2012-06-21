@@ -7,6 +7,8 @@
 #include <QDebug>
 #include "src/jobmanager/jobmanagersimulator.h"
 #include <QTranslator>
+#include <QSqlDatabase>
+#include <QMessageBox>
 
 int main(int argc, char *argv[])
 {
@@ -36,14 +38,30 @@ int main(int argc, char *argv[])
     a.setApplicationName("CD-Kiosk");
     a.setApplicationVersion("0.1a1");
     
+    QSettings settings;
+    
     splash->showMessage("Starting the print Job Manager ...", align, color);
     a.processEvents();
     JobManager *jobManager = new JobManagerSimulator(QDir(QDesktopServices::storageLocation(QDesktopServices::DataLocation)));
     
+    splash->showMessage("Connecting to the SQL-Database ...", align, color);
+    a.processEvents();
+    QSqlDatabase db = QSqlDatabase::addDatabase(settings.value("sql.driver", "QMYSQL").toString());
+    db.setHostName(settings.value("sql.hostname", "localhost").toString());
+    db.setUserName(settings.value("sql.username", "root").toString());
+    db.setPassword(settings.value("sql.password", "").toString());
+    db.setPort(settings.value("sql.port", db.port()).toInt());
+    db.setDatabaseName(settings.value("sql.databasename", "cdkiosk").toString());
+    db.setConnectOptions(settings.value("sql.connectoptions", "UNIX_SOCKET=/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock").toString());
+    
+    if (!db.open()) {
+	QMessageBox::critical(splash, QObject::tr("Database error!"), QObject::tr("Could not connect to the database!\nPlease check the settings screen. Error:\n%0 - %1").arg(db.lastError().driverText()).arg(db.lastError().databaseText()));
+    }
+    
     splash->showMessage("Done!", align, color);
     a.processEvents();
     
-    MainWindow w;
+    MainWindow w(db);
     w.setJobManager(jobManager);
     
     splash->finish(&w);

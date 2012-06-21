@@ -19,7 +19,7 @@ class MainWindow : public QMainWindow
 public:
 	static const int ROLE_DATABASE_ID;
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QSqlDatabase &db, QWidget *parent = 0);
     ~MainWindow();
 
     SpeechManager * speechManager();
@@ -75,8 +75,6 @@ private:
     QSqlDatabase m_database;
     
     QSqlRelationalTableModel *model;
-    
-    void setupDatabase();
 };
 
 #endif // MAINWINDOW_H
