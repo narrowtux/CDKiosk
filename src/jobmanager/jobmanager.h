@@ -21,6 +21,8 @@ signals:
     void jobDiscFinished(Job *job, int discsDone, int discsTotal);
     void jobDiscProgress(Job *job, int discsDone, int discsTotal, int progress);
     void message(QString message);
+    void started();
+    void stopped();
     
 public slots:
     /**

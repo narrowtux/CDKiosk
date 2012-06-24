@@ -8,6 +8,8 @@
 #include "administrationwindow.h"
 #include <QInputDialog>
 #include <QShortcut>
+#include <QPainter>
+#include "paintutils.h"
 
 const int MainWindow::ROLE_DATABASE_ID = Qt::UserRole + 1;
 
@@ -199,6 +201,7 @@ void MainWindow::on_pushProceedToBurn_clicked()
 	    FileList files;
 	    files << speech->filenameMP3();
 	    job->setFiles(files);
+	    job->setCover(PaintUtils::generateCoverForJob(QList<Speech*>()<<speech, m_currentDiscType));
 	    m_jobManager->addJob(job);
 	}
     } else {
@@ -209,6 +212,7 @@ void MainWindow::on_pushProceedToBurn_clicked()
 	    files << speech->filenameMP3();
 	}
 	job->setFiles(files);
+	job->setCover(PaintUtils::generateCoverForJob(m_speechesForJob, m_currentDiscType));
 	m_jobManager->addJob(job);
     }
     
@@ -264,3 +268,5 @@ void MainWindow::on_pushAdministration_clicked()
     window->setWindowTitle(tr("Administration"));
     window->show();
 }
+
+

@@ -34,7 +34,8 @@ SOURCES += src/filter/authorfilter.cpp \
 			src/main.cpp \
 			src/speech/speech.cpp \
 			src/speech/speechmanager.cpp \
-			src/speech/speechmodel.cpp
+			src/speech/speechmodel.cpp \
+    src/gui/paintutils.cpp
 
 HEADERS  += src/filter/authorfilter.h \
 			src/filter/datefilter.h \
@@ -51,7 +52,8 @@ HEADERS  += src/filter/authorfilter.h \
 			src/jobmanager/jobmanagersimulator.h \
 			src/speech/speech.h \
 			src/speech/speechmanager.h \
-			src/speech/speechmodel.h
+			src/speech/speechmodel.h \
+    src/gui/paintutils.h
 
 FORMS    += src/gui/administrationwindow.ui \
 			src/gui/mainwindow.ui \

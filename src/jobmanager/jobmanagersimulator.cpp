@@ -6,6 +6,7 @@ JobManagerSimulator::JobManagerSimulator(QDir workingDirectory, QObject *parent)
     m_timer->setInterval(200);
     m_jobProgress = 0;
     connect(m_timer, SIGNAL(timeout()), this, SLOT(onTick()));
+    m_running = false;
 }
 
 bool JobManagerSimulator::abortJob(Job *job)
@@ -20,7 +21,9 @@ bool JobManagerSimulator::abortJob(Job *job)
 
 bool JobManagerSimulator::startBurning()
 {
+    qDebug()<<"[Simulator] Starting to burn...";
     m_timer->start();
+    emit(started());
     return true;
 }
 
@@ -29,6 +32,7 @@ void JobManagerSimulator::onTick()
     if(hasJobs()) {
 	Job *job = m_jobQueue.first();
 	int progress = job->progress() + 1;
+	job->setProgress(progress);
 	QModelIndex statusIndex = index(0, 4), 
 		    progressIndex = index(0, 3),
 		    discsDoneIndex = index(0, 1);
@@ -56,10 +60,11 @@ void JobManagerSimulator::onTick()
 		emit(jobFinished(job));
 	    }
 	}
-	job->setProgress(progress);
     } else {
+	qDebug()<<"Stopped burning because no jobs are left";
 	m_timer->stop();
 	m_running = false;
+	emit(stopped());
     }
 }
 

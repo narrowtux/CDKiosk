@@ -4,5 +4,7 @@
         <file>list-add.png</file>
         <file>list-remove.png</file>
         <file alias="splash.png">splash.png</file>
+        <file>AudioCDLogo.png</file>
+        <file>MP3AudioLogo.png</file>
     </qresource>
 </RCC>

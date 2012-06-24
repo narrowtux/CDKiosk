@@ -17,6 +17,7 @@ signals:
 public slots:
     void setCurrentJob(Job* job);
     void onJobDiskProgress(Job* job, int discsDone, int discsTotal, int progress);
+    void onManagerStopped();
 private:
     void paintEvent(QPaintEvent *);
     
