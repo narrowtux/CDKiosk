@@ -1,9 +1,10 @@
 #include "administrationwindow.h"
 #include "ui_administrationwindow.h"
 #include <QKeySequence>
+#include "databaseentrydialog.h"
 
 AdministrationWindow::AdministrationWindow(MainWindow *parent) :
-    QWidget(0),
+    QDialog(0),
     ui(new Ui::AdministrationWindow)
 {
     ui->setupUi(this);
@@ -25,9 +26,9 @@ AdministrationWindow::~AdministrationWindow()
 void AdministrationWindow::on_checkShowAdminButton_toggled(bool checked)
 {
     if(checked) {
-	ui->labelShortcutHint->setStyleSheet("");
+		ui->labelShortcutHint->setStyleSheet("");
     } else {
-	ui->labelShortcutHint->setStyleSheet("color:red");
+		ui->labelShortcutHint->setStyleSheet("color:red");
     }
     settings.setValue("showAdminButton", checked);
 }
@@ -40,9 +41,15 @@ void AdministrationWindow::on_linePassword_editingFinished()
 void AdministrationWindow::on_checkPassword_toggled(bool checked)
 {
     if(!checked) {
-	settings.setValue("password", "");
-	ui->linePassword->setText("");
+		settings.setValue("password", "");
+		ui->linePassword->setText("");
     } else {
-	ui->linePassword->setFocus();
+		ui->linePassword->setFocus();
     }
+}
+
+void AdministrationWindow::on_buttonAddEntry_clicked()
+{
+	DatabaseEntryDialog *dialog = new DatabaseEntryDialog(-1, this);
+	dialog->open();
 }

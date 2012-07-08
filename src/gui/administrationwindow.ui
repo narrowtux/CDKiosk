@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>AdministrationWindow</class>
- <widget class="QWidget" name="AdministrationWindow">
+ <widget class="QDialog" name="AdministrationWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabSettings">
       <attribute name="title">
@@ -25,49 +25,52 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QCheckBox" name="checkShowAdminButton">
-         <property name="text">
+        <widget class="QGroupBox" name="checkShowAdminButton">
+         <property name="title">
           <string>Show administration button on the homepage</string>
          </property>
-         <property name="checked">
+         <property name="checkable">
           <bool>true</bool>
          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLabel" name="labelShortcutHint">
+            <property name="text">
+             <string>You can always show this window by pressing CMD+,</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="labelShortcutHint">
-         <property name="text">
-          <string>You can always show this window by pressing CMD+,</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkPassword">
-         <property name="text">
+        <widget class="QGroupBox" name="checkPassword">
+         <property name="title">
           <string>Password protected administration</string>
          </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelPassword">
+            <property name="text">
+             <string>Password</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="linePassword">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
-       </item>
-       <item>
-        <layout class="QFormLayout" name="formLayout">
-         <item row="0" column="0">
-          <widget class="QLabel" name="labelPassword">
-           <property name="text">
-            <string>Password</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="linePassword">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="echoMode">
-            <enum>QLineEdit::Password</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </item>
        <item>
         <spacer name="verticalSpacer">
@@ -88,6 +91,56 @@
       <attribute name="title">
        <string>Database</string>
       </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Entries</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableView" name="viewDatabase"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QToolButton" name="buttonAddEntry">
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="buttonDeeleteEntry">
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="buttonEditEntry">
+           <property name="text">
+            <string>Edit ...</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
@@ -132,22 +185,6 @@
     <hint type="destinationlabel">
      <x>487</x>
      <y>437</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkPassword</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>linePassword</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>127</x>
-     <y>95</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>386</x>
-     <y>120</y>
     </hint>
    </hints>
   </connection>

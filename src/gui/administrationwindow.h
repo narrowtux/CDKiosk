@@ -3,13 +3,14 @@
 
 #include <QWidget>
 #include <QSettings>
+#include <QDialog>
 #include "mainwindow.h"
 
 namespace Ui {
 class AdministrationWindow;
 }
 
-class AdministrationWindow : public QWidget
+class AdministrationWindow : public QDialog
 {
     Q_OBJECT
     
@@ -24,6 +25,8 @@ private slots:
     
     void on_checkPassword_toggled(bool checked);
     
+	void on_buttonAddEntry_clicked();
+	
 private:
     Ui::AdministrationWindow *ui;
     QSettings settings;

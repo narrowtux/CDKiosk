@@ -35,7 +35,8 @@ SOURCES += src/filter/authorfilter.cpp \
 			src/speech/speech.cpp \
 			src/speech/speechmanager.cpp \
 			src/speech/speechmodel.cpp \
-    src/gui/paintutils.cpp
+    src/gui/paintutils.cpp \
+    src/gui/databaseentrydialog.cpp
 
 HEADERS  += src/filter/authorfilter.h \
 			src/filter/datefilter.h \
@@ -53,11 +54,14 @@ HEADERS  += src/filter/authorfilter.h \
 			src/speech/speech.h \
 			src/speech/speechmanager.h \
 			src/speech/speechmodel.h \
-    src/gui/paintutils.h
+    src/gui/paintutils.h \
+    src/gui/databaseentrydialog.h \
+    src/utils/utils.h
 
 FORMS    += src/gui/administrationwindow.ui \
 			src/gui/mainwindow.ui \
-			src/gui/speecheditdialog.ui 
+			src/gui/speecheditdialog.ui \ 
+    src/gui/databaseentrydialog.ui
 
 RESOURCES += \
     res/res.qrc
