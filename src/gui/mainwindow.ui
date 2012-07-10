@@ -155,7 +155,7 @@ border-bottom-right-radius: 10px;</string>
        <number>0</number>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -286,6 +286,9 @@ border-bottom-right-radius: 10px;</string>
         </item>
         <item>
          <widget class="QTableView" name="viewSpeeches">
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
           </property>
@@ -445,7 +448,7 @@ border-radius: 10px;</string>
              <string>Burn</string>
             </property>
             <property name="icon">
-             <iconset resource="../res/res.qrc">
+             <iconset resource="../../res/res.qrc">
               <normaloff>:/gui/icons/burn.png</normaloff>:/gui/icons/burn.png</iconset>
             </property>
            </widget>
@@ -507,7 +510,7 @@ border-radius: 10px;</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../res/res.qrc"/>
+  <include location="../../res/res.qrc"/>
  </resources>
  <connections>
   <connection>

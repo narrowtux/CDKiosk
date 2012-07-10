@@ -12,38 +12,40 @@
 #include "paintutils.h"
 
 const int MainWindow::ROLE_DATABASE_ID = Qt::UserRole + 1;
+MainWindow* MainWindow::s_instance = 0;
 
 MainWindow::MainWindow(QSqlDatabase &db, QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
 {
+	MainWindow::s_instance = this;
 	ui->setupUi(this);
 	
 	this->m_database = db;
 	
 	showHomePage();
 	
-	model = new  QSqlRelationalTableModel(this, m_database);
-	model->setTable("speech");
+	m_model = new  QSqlRelationalTableModel(this, m_database);
+	m_model->setTable("speech");
 	
-	model->setJoinMode(QSqlRelationalTableModel::LeftJoin);
-	model->setRelation(6, QSqlRelation("person", "p_id", "p_name"));
+	m_model->setJoinMode(QSqlRelationalTableModel::LeftJoin);
+	m_model->setRelation(6, QSqlRelation("person", "p_id", "p_name"));
 	
-	model->setHeaderData(0, Qt::Horizontal, tr("Id", "speech"));
-	model->setHeaderData(1, Qt::Horizontal, tr("Name", "speech"));
-	model->setHeaderData(2, Qt::Horizontal, tr("Filename", "speech"));
-	model->setHeaderData(3, Qt::Horizontal, tr("Date", "speech"));
-	model->setHeaderData(4, Qt::Horizontal, tr("Creation Date", "speech"));
-	model->setHeaderData(5, Qt::Horizontal, tr("Duration", "speech"));
-	model->setHeaderData(6, Qt::Horizontal, tr("Speaker", "speech"));
+	m_model->setHeaderData(0, Qt::Horizontal, tr("Id", "speech"));
+	m_model->setHeaderData(1, Qt::Horizontal, tr("Name", "speech"));
+	m_model->setHeaderData(2, Qt::Horizontal, tr("Filename", "speech"));
+	m_model->setHeaderData(3, Qt::Horizontal, tr("Date", "speech"));
+	m_model->setHeaderData(4, Qt::Horizontal, tr("Creation Date", "speech"));
+	m_model->setHeaderData(5, Qt::Horizontal, tr("Duration", "speech"));
+	m_model->setHeaderData(6, Qt::Horizontal, tr("Speaker", "speech"));
 	
-	ui->viewSpeeches->setModel(model);
+	ui->viewSpeeches->setModel(m_model);
 	ui->viewSpeeches->hideColumn(0);
 	ui->viewSpeeches->hideColumn(2);
 	ui->viewSpeeches->hideColumn(4);
 	
-	if(!model->select()) {
-		qDebug()<<model->lastError();
+	if(!m_model->select()) {
+		qDebug()<<m_model->lastError();
 	}
 	
 	m_jobManager = 0;
@@ -125,6 +127,11 @@ JobManager *MainWindow::jobManager()
 	return m_jobManager;
 }
 
+QSqlRelationalTableModel *MainWindow::model()
+{
+	return m_model;
+}
+
 void MainWindow::on_pushCD_clicked()
 {
 	cleanJob();
@@ -149,7 +156,7 @@ void MainWindow::on_pushAddToCart_clicked()
 {
 	QModelIndexList items = ui->viewSpeeches->selectionModel()->selectedRows();
 	foreach (QModelIndex item, items) {
-		QSqlRecord record = model->record(item.row());
+		QSqlRecord record = m_model->record(item.row());
 		int databaseId = record.field("s_id").value().toInt();
 		QString name = record.field("s_name").value().toString();
 		QString speaker = record.field("p_name").value().toString();
@@ -266,6 +273,11 @@ void MainWindow::on_pushAdministration_clicked()
 	window->setWindowRole("Preferences");
 	window->setWindowTitle(tr("Administration"));
 	window->open();
+}
+
+MainWindow *MainWindow::instance()
+{
+	return MainWindow::s_instance;
 }
 
 

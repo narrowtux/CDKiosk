@@ -18,6 +18,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
 	static const int ROLE_DATABASE_ID;
+	static MainWindow *instance();
 public:
     explicit MainWindow(QSqlDatabase &db, QWidget *parent = 0);
     ~MainWindow();
@@ -26,6 +27,7 @@ public:
     
     void setJobManager(JobManager *jobManager);
     JobManager *jobManager();
+	QSqlRelationalTableModel *model();
 public slots:
     void showHomePage();
     void showChoosePage();
@@ -58,6 +60,7 @@ private slots:
     void on_pushAdministration_clicked();
     
 private:
+	static MainWindow *s_instance;
     Ui::MainWindow *ui;
 
     SpeechManager m_speechManager;
@@ -74,7 +77,7 @@ private:
     
     QSqlDatabase m_database;
     
-    QSqlRelationalTableModel *model;
+    QSqlRelationalTableModel *m_model;
 };
 
 #endif // MAINWINDOW_H

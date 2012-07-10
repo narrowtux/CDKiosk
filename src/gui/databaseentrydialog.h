@@ -31,6 +31,7 @@ private:
     int m_databaseId;
     QString m_fileLocation;
     QFileDialog *m_currentFileDialog;
+	void updateFileButton();
 };
 
 #endif // DATABASEENTRYDIALOG_H

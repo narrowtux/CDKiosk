@@ -27,6 +27,10 @@ private slots:
     
 	void on_buttonAddEntry_clicked();
 	
+	void on_buttonDeeleteEntry_clicked();
+	
+	void on_buttonEditEntry_clicked();
+	
 private:
     Ui::AdministrationWindow *ui;
     QSettings settings;
