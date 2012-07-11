@@ -22,6 +22,7 @@ MainWindow::MainWindow(QSqlDatabase &db, QWidget *parent) :
 	ui->setupUi(this);
 	
 	this->m_database = db;
+	this->m_currentDiscType = Job::AUDIO;
 	
 	showHomePage();
 	

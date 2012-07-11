@@ -24,7 +24,6 @@ SOURCES += src/filter/authorfilter.cpp \
 			src/filter/groupfilter.cpp \
 			src/gui/administrationwindow.cpp \
 			src/gui/mainwindow.cpp \
-			src/gui/speecheditdialog.cpp \
 			src/gui/cddisplaywidget.cpp \
 			src/jobmanager/abstracttask.cpp \
 			src/jobmanager/job.cpp \
@@ -44,7 +43,6 @@ HEADERS  += src/filter/authorfilter.h \
 			src/filter/groupfilter.h \
 			src/gui/administrationwindow.h \
 			src/gui/mainwindow.h \
-			src/gui/speecheditdialog.h \
 			src/gui/cddisplaywidget.h \
 			src/jobmanager/abstracttask.h \
 			src/jobmanager/job.h \
@@ -60,7 +58,6 @@ HEADERS  += src/filter/authorfilter.h \
 
 FORMS    += src/gui/administrationwindow.ui \
 			src/gui/mainwindow.ui \
-			src/gui/speecheditdialog.ui \ 
     src/gui/databaseentrydialog.ui
 
 RESOURCES += \

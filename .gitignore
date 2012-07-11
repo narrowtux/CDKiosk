@@ -1,1 +1,5 @@
 *.pro.user
+*.pro.user*
+*.mak
+*.plist
+*.pbproj

@@ -49,7 +49,6 @@ DatabaseEntryDialog::DatabaseEntryDialog(int id, QWidget *parent) :
 			deleteLater();
 		}
 	}
-	
 }
 
 DatabaseEntryDialog::~DatabaseEntryDialog()
